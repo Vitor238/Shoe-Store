@@ -1,0 +1,14 @@
+<resources>
+    <string name="home">Home</string>
+    <string name="search">Pesquisar</string>
+    <string name="cart">Carrinho</string>
+    <string name="account">Conta</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Cadastrar</string>
+    <string name="featured">Em destaque</string>
+    <string name="running_shoes">Tênis de corrida</string>
+    <string name="casual_shoes">Tênis casual</string>
+    <string name="football_boots">Chuteira</string>
+    <string name="high_heels">Salto alto</string>
+    <string name="sports_equipment">Equipamento esportivo</string>
+</resources>
