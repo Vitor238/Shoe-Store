@@ -107,6 +107,7 @@
         <item name="fontFamily">@font/roboto_condensed_bold</item>
         <item name="font">@font/roboto_condensed_bold</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>
