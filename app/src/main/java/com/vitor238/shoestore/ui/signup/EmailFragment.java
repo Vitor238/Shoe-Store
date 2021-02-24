@@ -1,6 +1,5 @@
-package com.vitor238.shoestore.ui;
+package com.vitor238.shoestore.ui.signup;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,30 +7,28 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.upstream.RawResourceDataSource;
+import com.google.android.material.snackbar.Snackbar;
 import com.vitor238.shoestore.R;
-import com.vitor238.shoestore.databinding.FragmentHomeBinding;
+import com.vitor238.shoestore.databinding.FragmentEmailBinding;
 
-public class HomeFragment extends Fragment {
+public class EmailFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    SimpleExoPlayer player;
-    // TODO: Rename and change types of parameters
+    private FragmentEmailBinding binding;
+
     private String mParam1;
     private String mParam2;
-    private FragmentHomeBinding binding;
 
-    public HomeFragment() {
+    public EmailFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static EmailFragment newInstance(String param1, String param2) {
+        EmailFragment fragment = new EmailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -52,26 +49,26 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentEmailBinding.inflate(getLayoutInflater(), container, false);
 
-        player = new SimpleExoPlayer.Builder(requireContext()).build();
-        binding.playerView.setPlayer(player);
-
-        Uri uri = RawResourceDataSource.buildRawResourceUri(R.raw.walking);
-        MediaItem mediaItem = MediaItem.fromUri(uri);
-        player.setMediaItem(mediaItem);
-        player.prepare();
-        player.play();
-        player.setRepeatMode(Player.REPEAT_MODE_ONE);
+        binding.buttonNext.setOnClickListener(v -> {
+            String email = binding.fieldEmail.getEditText().getText().toString();
+            if (!email.isEmpty()) {
+                NavDirections navDirections = EmailFragmentDirections.actionEmailFragmentToPasswordFragment(email);
+                Navigation.findNavController(binding.getRoot()).navigate(navDirections);
+            } else {
+                Snackbar.make(binding.getRoot(), getString(R.string.type_your_email), Snackbar.LENGTH_SHORT)
+                        .show();
+            }
+        });
 
         return binding.getRoot();
     }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        player.release();
-        player = null;
     }
 }

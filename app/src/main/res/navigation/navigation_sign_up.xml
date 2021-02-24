@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_sign_up"
+    app:startDestination="@id/emailFragment">
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.vitor238.shoestore.ui.signup.EmailFragment"
+        android:label="fragment_email"
+        tools:layout="@layout/fragment_email">
+        <action
+            android:id="@+id/action_emailFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.vitor238.shoestore.ui.signup.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password">
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+</navigation>

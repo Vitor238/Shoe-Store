@@ -12,4 +12,11 @@
     <string name="football_boots">Football boots</string>
     <string name="high_heels">High heels</string>
     <string name="sports_equipment">Sports equipment</string>
+    <string name="next">Next</string>
+    <string name="email">E mail</string>
+    <string name="password">Password</string>
+    <string name="type_your_email">Type your email</string>
+    <string name="type_your_password">Type your password</string>
+    <string name="error">Error: %s</string>
+    <string name="your_account_has_been_successfully_created">Your account has been successfully created</string>
 </resources>

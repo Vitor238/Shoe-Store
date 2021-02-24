@@ -90,4 +90,23 @@
         <item name="android:fontFamily">@font/roboto_condensed</item>
     </style>
 
+
+    <style name="OutlinedRoundedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+    <style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="fontFamily">@font/roboto_condensed_bold</item>
+        <item name="font">@font/roboto_condensed_bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ShoeStore" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.ShoeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
@@ -35,5 +35,7 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MdcTypographyStyles.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MdcTypographyStyles.Overline
         </item>
+
+        <item name="textInputStyle">@style/OutlinedRoundedBox</item>
     </style>
 </resources>

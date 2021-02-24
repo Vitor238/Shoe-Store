@@ -36,5 +36,7 @@
         <item name="textAppearanceOverline">@style/TextAppearance.MdcTypographyStyles.Overline
         </item>
 
+        <item name="textInputStyle">@style/OutlinedRoundedBox</item>
+
     </style>
 </resources>
