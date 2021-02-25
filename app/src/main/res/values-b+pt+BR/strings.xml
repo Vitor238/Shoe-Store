@@ -18,4 +18,5 @@
     <string name="type_your_password">Type your password</string>
     <string name="error">Erro: %s</string>
     <string name="your_account_has_been_successfully_created">Your account has been successfully created</string>
+    <string name="log_out">Log out</string>
 </resources>

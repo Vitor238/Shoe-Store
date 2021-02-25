@@ -3,17 +3,17 @@ package com.vitor238.shoestore.ui.signup;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.vitor238.shoestore.R;
 import com.vitor238.shoestore.databinding.FragmentPasswordBinding;
 import com.vitor238.shoestore.ui.home.MainActivity;
@@ -22,7 +22,6 @@ import java.util.Objects;
 
 public class PasswordFragment extends Fragment {
 
-    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private String email;
     private FragmentPasswordBinding binding;
     private String TAG;
@@ -47,39 +46,47 @@ public class PasswordFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPasswordBinding.inflate(getLayoutInflater(), container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        SignUpViewModel signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         binding.buttonSignUp.setOnClickListener(v -> {
             hideKeyboard();
             String password = Objects.requireNonNull(binding.fieldPassword.getEditText()).getText().toString();
 
             if (!password.isEmpty()) {
-                binding.progressBar.setVisibility(View.VISIBLE);
-                createUserWithEmailAndPassword(email, password);
+                signUpViewModel.createUserWithEmailAndPassword(email, password);
             } else {
                 Snackbar.make(binding.getRoot(), R.string.type_your_password, Snackbar.LENGTH_SHORT)
                         .show();
             }
         });
 
-        return binding.getRoot();
-    }
-
-    private void createUserWithEmailAndPassword(@NonNull String email, @NonNull String password) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
+        signUpViewModel.getStatusLiveData().observe(getViewLifecycleOwner(), signUpStatus -> {
+            switch (signUpStatus) {
+                case LOADING:
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    break;
+                case SUCCESS:
                     binding.progressBar.setVisibility(View.GONE);
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(requireActivity(), MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else {
-                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        Snackbar.make(binding.getRoot(),
-                                getString(R.string.error, task.getException()),
-                                Snackbar.LENGTH_SHORT)
-                                .show();
-                    }
-                });
+                    Intent intent = new Intent(requireActivity(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    break;
+                case FAILED:
+                    binding.progressBar.setVisibility(View.GONE);
+                    break;
+            }
+        });
+
+        signUpViewModel.getErrorMessage().observe(getViewLifecycleOwner(), error ->
+                Snackbar.make(binding.getRoot(), getString(R.string.error, error), Snackbar.LENGTH_SHORT)
+                        .show());
+
     }
 
     public void hideKeyboard() {
