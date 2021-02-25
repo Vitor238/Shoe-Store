@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.vitor238.shoestore.ui.home.AccountFragment"
+        android:name="com.vitor238.shoestore.ui.home.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
 </navigation>
