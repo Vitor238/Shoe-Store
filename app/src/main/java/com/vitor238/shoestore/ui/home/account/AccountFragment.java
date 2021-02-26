@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.vitor238.shoestore.R;
 import com.vitor238.shoestore.databinding.FragmentAccountBinding;
 import com.vitor238.shoestore.ui.signup.SignUpActivity;
 
@@ -32,6 +33,11 @@ public class AccountFragment extends Fragment {
             Intent intent = new Intent(requireContext(), SignUpActivity.class);
             startActivity(intent);
         });
+
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_settings, SettingsFragment.newInstance())
+                .commit();
 
         return binding.getRoot();
     }

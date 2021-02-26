@@ -21,8 +21,8 @@ public class AuthRepository {
     public AuthRepository() {
         this.TAG = AuthRepository.class.getSimpleName();
         if (firebaseAuth.getCurrentUser() != null) {
-            user.postValue(firebaseAuth.getCurrentUser());
-            loggedOut.postValue(false);
+            user.setValue(firebaseAuth.getCurrentUser());
+            loggedOut.setValue(false);
         }
     }
 
@@ -42,6 +42,11 @@ public class AuthRepository {
                         }
                     }
                 });
+    }
+
+    public void logOut() {
+        firebaseAuth.signOut();
+        loggedOut.setValue(true);
     }
 
     public MutableLiveData<FirebaseUser> getUserLiveData() {
