@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.vitor238.shoestore.R;
 import com.vitor238.shoestore.databinding.FragmentAccountBinding;
+import com.vitor238.shoestore.ui.login.LoginActivity;
 import com.vitor238.shoestore.ui.signup.SignUpActivity;
 
 public class AccountFragment extends Fragment {
@@ -31,6 +32,11 @@ public class AccountFragment extends Fragment {
 
         binding.buttonSignUp.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), SignUpActivity.class);
+            startActivity(intent);
+        });
+
+        binding.buttonLogIn.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), LoginActivity.class);
             startActivity(intent);
         });
 
@@ -58,6 +64,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        binding = null;
     }
 }

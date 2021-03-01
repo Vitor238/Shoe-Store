@@ -1,4 +1,4 @@
-package com.vitor238.shoestore.ui.signup;
+package com.vitor238.shoestore.ui.login;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -6,19 +6,20 @@ import androidx.lifecycle.ViewModel;
 import com.vitor238.shoestore.data.repository.AuthRepository;
 import com.vitor238.shoestore.utils.Status;
 
-public class SignUpViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
+
     private final AuthRepository authRepository;
     private final MutableLiveData<Status> status;
     private final MutableLiveData<String> errorMessage;
 
-    public SignUpViewModel() {
+    public LoginViewModel() {
         authRepository = new AuthRepository();
         status = authRepository.getStatusLiveData();
         errorMessage = authRepository.getErrorMessage();
     }
 
-    public void createUserWithEmailAndPassword(String email, String password) {
-        authRepository.createUserWithEmailAndPassword(email, password);
+    public void signInWithEmailAndPassword(String email, String password) {
+        authRepository.signInWithEmailAndPassword(email, password);
     }
 
     public MutableLiveData<Status> getStatusLiveData() {

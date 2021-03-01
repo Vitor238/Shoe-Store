@@ -1,4 +1,4 @@
-package com.vitor238.shoestore.ui.signup;
+package com.vitor238.shoestore.ui.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +14,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.vitor238.shoestore.R;
 import com.vitor238.shoestore.databinding.FragmentEmailBinding;
 
-public class EmailFragment extends Fragment {
 
-    private FragmentEmailBinding binding;
+public class EmailLoginFragment extends Fragment {
 
-    public EmailFragment() {
+    FragmentEmailBinding binding;
+
+    public EmailLoginFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +32,7 @@ public class EmailFragment extends Fragment {
         binding.buttonNext.setOnClickListener(v -> {
             String email = binding.fieldEmail.getEditText().getText().toString();
             if (!email.isEmpty()) {
-                NavDirections navDirections = EmailFragmentDirections.actionEmailFragmentToPasswordFragment(email);
+                NavDirections navDirections = EmailLoginFragmentDirections.actionEmailLoginFragmentToPasswordLoginFragment(email);
                 Navigation.findNavController(binding.getRoot()).navigate(navDirections);
             } else {
                 Snackbar.make(binding.getRoot(), getString(R.string.type_your_email), Snackbar.LENGTH_SHORT)
@@ -39,9 +40,9 @@ public class EmailFragment extends Fragment {
             }
         });
 
+
         return binding.getRoot();
     }
-
 
     @Override
     public void onDestroyView() {

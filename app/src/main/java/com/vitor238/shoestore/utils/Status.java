@@ -1,6 +1,6 @@
 package com.vitor238.shoestore.utils;
 
-public enum SignUpStatus {
+public enum Status {
     LOADING,
     SUCCESS,
     FAILED
