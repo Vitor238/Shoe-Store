@@ -5,14 +5,9 @@
         app:allowDividerAbove="true"
         app:allowDividerBelow="true"
         app:iconSpaceReserved="false"
-        app:key="pref_user"
-        app:title="User" />
-    <Preference
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false"
-        app:key="pref_ṕedidos"
-        app:title="Pedidos" />
+        app:key="pref_my_orders"
+        app:title="My orders" />
+
     <Preference
         app:allowDividerAbove="true"
         app:allowDividerBelow="true"

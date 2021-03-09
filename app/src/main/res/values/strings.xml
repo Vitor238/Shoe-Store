@@ -20,4 +20,8 @@
     <string name="error">Error: %s</string>
     <string name="your_account_has_been_successfully_created">Your account has been successfully created</string>
     <string name="log_out">Log out</string>
+    <string name="my_orders">My Orders</string>
+    <string name="you_haven_t_placed_any_orders_yet">You haven\'t placed any orders yet</string>
+    <string name="price_value">USD %.2f</string>
+    <string name="product_name">%s %s</string>
 </resources>

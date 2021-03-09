@@ -10,6 +10,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.vitor238.shoestore.R;
 import com.vitor238.shoestore.ui.home.MainActivity;
+import com.vitor238.shoestore.ui.myorders.MyOrdersActivity;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     LoggedInViewModel loggedInViewModel;
@@ -28,11 +29,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Preference preferenceLogout = findPreference("pref_log_out");
 
-        preferenceLogout.setOnPreferenceClickListener(preference -> {
-            loggedInViewModel.logOut();
-            return true;
-        });
+        if (preferenceLogout != null) {
+            preferenceLogout.setOnPreferenceClickListener(preference -> {
+                loggedInViewModel.logOut();
+                return true;
+            });
+        }
 
+        Preference preferenceOrders = findPreference("pref_my_orders");
+
+        if (preferenceOrders != null) {
+            preferenceOrders.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(requireActivity(), MyOrdersActivity.class);
+                startActivity(intent);
+                return true;
+            });
+        }
 
     }
 
